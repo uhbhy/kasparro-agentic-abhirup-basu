@@ -1,43 +1,44 @@
-# 🌟 Kasparo Agentic Content Generation System
+🌟 Agentic Content Generation System
 
-A modular, multi-agent automation pipeline that transforms a small structured product dataset into fully generated machine-readable JSON content pages.  
-This system simulates real-world agentic workflows used in AI-driven content automation engines.
+A modular multi-agent automation pipeline that transforms a small structured product dataset into complete, machine-readable JSON content pages.
 
----
+The system simulates real-world deterministic agentic workflows used in enterprise AI content engines.
 
-# 🚀 Overview
+🚀 What This System Produces
 
-This project ingests a minimal product dataset and autonomously produces:
+From a minimal product dataset, the pipeline generates:
 
-- **`faq.json`** — A categorized FAQ page  
-- **`product_page.json`** — A structured product description page  
-- **`comparison_page.json`** — A comparison between the main product and a fictional competitor  
-- **(optional)** `questions.json` — All generated user questions  
+faq.json — Categorized FAQ page
 
-All content is generated **only from the provided data**, using reusable logic blocks and template rules.  
-No external knowledge, scraping, or APIs are used.
+product_page.json — Product description page
 
----
+comparison_page.json — Comparison page vs. a fictional competitor
 
-# 🧠 System Goals
+questions.json (optional) — All generated user questions
 
-- Build a **modular, agent-based orchestration system**  
-- Demonstrate **automation graphs**, **content logic layers**, and **template engines**  
-- Produce **clean, deterministic, structured JSON outputs**  
-- Show strong engineering design, abstraction, and reasoning  
+All content is produced purely from the provided dataset using rule-based logic —
+no external knowledge, scraping, or APIs.
 
----
+🎯 System Goals
 
-# 🏗️ Architecture Overview
+Build a modular, deterministic multi-agent system
 
-The system follows a **deterministic multi-agent flow**, where each agent has a *single responsibility* and communicates only through structured inputs/outputs.
+Demonstrate automation graphs, reusable content logic layers, and template assembly
 
-## 📦 High-Level Pipeline
+Generate clean, stable JSON outputs
 
-```mermaid
+Show strong engineering design & abstraction
+
+🏗️ Architecture Overview
+
+The system follows a deterministic multi-agent flow, where each agent has a single responsibility and communicates through strict JSON-structured inputs/outputs.
+
+📦 High-Level Pipeline
 flowchart TD
     A[RAW_PRODUCT_DATA] --> B[ProductParserAgent]
+
     B -->|Product| C[QuestionGenerationAgent]
+
     C -->|Questions| D[FAQPageAgent]
     C -->|Questions| H[QuestionListPageAgent]
 
@@ -54,97 +55,106 @@ flowchart TD
     G3 --> K[comparison_page.json]
     G4 --> L[questions.json]
 
+🧩 System Components
+🟦 1. Models (models.py)
 
+Defines all internal structured data types:
 
+Product
 
-# 🧩 System Components
+Question, FAQItem
 
-## 🟦 1. Models (`models.py`)
-Defines the internal data structures:
+ComparisonProduct
 
-- **Product**
-- **Question**, **FAQItem**
-- **ComparisonProduct**
-- **Page**
+Page (generic page container)
 
-These ensure consistent structure throughout the pipeline.
+These enforce strict, predictable schemas.
 
----
+🟦 2. Content Logic Blocks (content_blocks.py)
 
-## 🟦 2. Content Logic Blocks (`content_blocks.py`)
-Pure transformation functions, each representing a reusable logic component.
+Pure deterministic functions used to generate content.
 
-### Examples:
-- `generate_product_summary_block`
-- `generate_usage_block`
-- `generate_safety_block`
-- `generate_benefits_block`
-- `generate_pricing_block`
-- `generate_questions` (15+ categorized)
+Examples (Product Content):
 
-### Comparison Logic:
-- `compare_ingredients_block`
-- `compare_benefits_block`
-- `compare_pricing_block`
+generate_product_summary_block
 
-These blocks ensure **deterministic, rule-based content generation**.
+generate_usage_block
 
----
+generate_safety_block
 
-## 🟦 3. Template Engine (`templates.py`)
-A lightweight, custom template system that assembles content blocks into structured page JSON.
+generate_benefits_block
 
-### Templates Implemented:
-- **FAQ Page Template**
-- **Product Page Template**
-- **Comparison Page Template**
+generate_pricing_block
 
-Each template returns a structured **Page** object containing only machine-readable JSON.
+Question Generation:
 
----
+generate_questions (15+ categorized types)
 
-## 🟦 4. Agents Layer (`agents/`)
-Each agent is a standalone unit responsible for exactly one job:
+Comparison Logic:
 
-| Agent | Responsibility |
-|-------|----------------|
-| `ProductParserAgent` | Convert raw dict → Product model |
-| `QuestionGenerationAgent` | Create categorized questions |
-| `FAQPageAgent` | Build FAQ Page |
-| `ProductPageAgent` | Build Product Detail Page |
-| `ComparisonPageAgent` | Build Comparison Page with fictional Product B |
-| `QuestionListPageAgent` | Produce a JSON list of all generated questions |
-| `FileWriterAgent` | Persist Page objects as `.json` files |
+compare_ingredients_block
 
-Every agent follows **single responsibility principle** and clean **input/output contracts**.
+compare_benefits_block
 
----
+compare_pricing_block
 
-## 🟦 5. Orchestrator (`orchestration.py`)
-The conductor of the entire pipeline.
+These blocks ensure repeatable, rule-driven content generation.
 
-### Responsibilities:
-- Construct all agents  
-- Define the automation graph (DAG)  
-- Pass outputs between agents  
-- Produce final JSON files into `/output`  
+🟦 3. Template Engine (templates.py)
 
-The orchestrator ensures the system runs **deterministically and reproducibly**.
+A lightweight custom template assembler that constructs full Page JSON objects.
 
----
+Templates Implemented:
 
-# 📂 Folder Structure
+FAQ Page Template
+
+Product Page Template
+
+Comparison Page Template
+
+Outputs are strictly machine-readable, not natural language documents.
+
+🟦 4. Multi-Agent Layer (agents/)
+
+Each agent performs exactly one responsibility:
+
+Agent	Responsibility
+ProductParserAgent	Convert raw dict → Product model
+QuestionGenerationAgent	Create categorized questions
+FAQPageAgent	Build FAQ page
+ProductPageAgent	Build product detail page
+ComparisonPageAgent	Build comparison page
+QuestionListPageAgent	Export all generated questions
+FileWriterAgent	Save Page objects to .json
+
+All agents follow strict input → output contracts.
+
+🟦 5. Orchestrator (orchestration.py)
+
+Coordinates the complete system:
+
+Constructs all agents
+
+Defines the DAG (automation graph)
+
+Routes outputs between agents
+
+Saves final JSON files into /output
+
+Ensures a run is fully deterministic.
+
+📂 Folder Structure
 Kasparo/
 │
 ├── agents/
-│ ├── base.py
-│ ├── parser_agent.py
-│ ├── question_agent.py
-│ ├── faq_page_agent.py
-│ ├── product_page_agent.py
-│ ├── comparison_page_agent.py
-│ ├── question_export_agent.py
-│ └── file_writer_agent.py
+│   ├── base.py
+│   ├── parser_agent.py
+│   ├── question_agent.py
+│   ├── faq_page_agent.py
+│   ├── product_page_agent.py
+│   ├── comparison_page_agent.py
+│   ├── question_export_agent.py
+│   └── file_writer_agent.py
 │
 ├── content_blocks.py
 ├── templates.py
@@ -154,29 +164,28 @@ Kasparo/
 ├── main.py
 │
 └── output/
-├── faq.json
-├── product_page.json
-├── comparison_page.json
-└── questions.json
+    ├── faq.json
+    ├── product_page.json
+    ├── comparison_page.json
+    └── questions.json
 
-
-🧭 Design Reasoning & Principles
+🧭 Design Principles
 ✔ Single Responsibility Agents
 
-Each agent encapsulates one job, making the system scalable and easy to maintain.
+One task per agent → scalable, maintainable, clean.
 
-✔ Deterministic Content Logic
+✔ Deterministic Logic
 
-No LLM calls, randomness, or external data. All output is synthetic and rule-based.
+No randomness, LLM calls, or external data.
 
 ✔ Modular & Extensible
 
-Adding a new page template or agent is trivial.
+Adding a new page or agent requires minimal code.
 
-✔ Machine-Readable Output
+✔ Strict Machine-Readable Output
 
-All pages are clean JSON with stable, documented structures.
+All outputs follow defined JSON schemas.
 
-✔ Real-World Inspired
+✔ Inspired by Real Industry Pipelines
 
-This mirrors industrial “AI content automation pipelines”
+Simulates real-world AI content automation systems.
