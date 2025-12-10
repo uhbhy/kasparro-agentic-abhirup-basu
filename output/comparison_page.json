@@ -1,0 +1,61 @@
+{
+  "page_type": "comparison_page",
+  "payload": {
+    "title": "GlowBoost Vitamin C Serum vs ClearRadiance Brightening Serum",
+    "products": {
+      "glowboost": {
+        "name": "GlowBoost Vitamin C Serum",
+        "key_ingredients": [
+          "Vitamin C",
+          "Hyaluronic Acid"
+        ],
+        "benefits": [
+          "Brightening",
+          "Fades dark spots"
+        ],
+        "price": "₹699"
+      },
+      "product_b": {
+        "name": "ClearRadiance Brightening Serum",
+        "key_ingredients": [
+          "Vitamin C",
+          "Niacinamide"
+        ],
+        "benefits": [
+          "Brightening",
+          "Helps with uneven tone"
+        ],
+        "price": "₹849"
+      }
+    },
+    "comparison": {
+      "ingredients": {
+        "common_ingredients": [
+          "Vitamin C"
+        ],
+        "only_in_glowboost": [
+          "Hyaluronic Acid"
+        ],
+        "only_in_product_b": [
+          "Niacinamide"
+        ]
+      },
+      "benefits": {
+        "common_benefits": [
+          "Brightening"
+        ],
+        "only_glowboost_benefits": [
+          "Fades dark spots"
+        ],
+        "only_product_b_benefits": [
+          "Helps with uneven tone"
+        ]
+      },
+      "pricing": {
+        "glowboost_price": "₹699",
+        "product_b_price": "₹849",
+        "price_relation": "glowboost_cheaper"
+      }
+    }
+  }
+}
