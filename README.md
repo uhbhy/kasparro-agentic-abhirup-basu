@@ -129,7 +129,7 @@ The conductor of the entire pipeline.
 
 The orchestrator ensures the system runs **deterministically and reproducibly**.
 
----
+```
 
 # 📂 Folder Structure
 Kasparo/
@@ -157,8 +157,7 @@ Kasparo/
 ├── comparison_page.json
 └── questions.json
 
----
-
+```
 🧭 Design Reasoning & Principles
 ✔ Single Responsibility Agents
 
