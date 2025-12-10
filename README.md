@@ -157,6 +157,7 @@ Kasparo/
 ├── comparison_page.json
 └── questions.json
 
+---
 
 🧭 Design Reasoning & Principles
 ✔ Single Responsibility Agents
